@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { MotionTemplate } from "@/lib/motion/registry";
 import { LiquidGlass } from "@/components/glass/LiquidGlass";
+import { TemplateThumbnail } from "@/components/motion/TemplateThumbnail";
 
 const CATEGORY_LABEL: Record<string, string> = {
   text: "Text",
@@ -23,10 +24,8 @@ export function TemplateCard({ template }: { template: MotionTemplate }) {
   return (
     <Link href={`/motion/${template.id}`}>
       <LiquidGlass level="subtle" interactive className="group flex flex-col overflow-hidden p-0">
-        <div className="flex aspect-[4/3] items-center justify-center border-b border-line bg-[#101114] text-center">
-          <span className="px-6 text-sm text-ink-faint transition-colors group-hover:text-ink-muted">
-            {template.name}
-          </span>
+        <div className="relative aspect-[4/3] border-b border-line">
+          <TemplateThumbnail template={template} />
         </div>
         <div className="flex flex-col gap-1 p-4">
           <div className="text-[15px] font-medium text-ink">{template.name}</div>

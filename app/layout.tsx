@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { GlassNavbar } from "@/components/glass/GlassNavbar";
-import { SiteFooter } from "@/components/glass/SiteFooter";
 
 // TODO: replace with the real domain once it's live (custom domain or the
 // *.vercel.app one Vercel assigns on deploy). Every absolute URL below
@@ -128,7 +127,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <GlassNavbar />
         <main className="mx-auto max-w-6xl px-4 pb-24 pt-10">{children}</main>
-        <SiteFooter />
       </body>
     </html>
   );

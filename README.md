@@ -1,7 +1,5 @@
 # WELLTools
 
-**Created by Samuel Extehines Heydemans** · Brand: **WELL**
-
 Motion graphics & video editing toolbox. Free, browser-based, no login, no server-side media processing.
 
 This repo implements the **foundation** the build spec calls out as the priority (§90: "establish architecture before pages") plus a working end-to-end MVP slice on top of it. It is not the full 300-template product — see **What's not built yet** below for exactly where it stops.

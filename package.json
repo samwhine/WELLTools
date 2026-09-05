@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "description": "Free browser-based motion graphics & video editing toolbox.",
-  "author": "Samuel Extehines Heydemans",
-  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
