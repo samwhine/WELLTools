@@ -68,17 +68,20 @@ function lerpColor(a: string, b: string, t: number): string {
 export function sampleTrack(track: Track, t: number): number | string {
   const kfs = track.keyframes;
   if (kfs.length === 0) return 0;
-  if (kfs.length === 1) return kfs[0].value;
+  if (kfs.length === 1) return kfs[0]!.value;
 
   const clamped = Math.min(1, Math.max(0, t));
 
-  // Find segment [prev, next] surrounding `clamped`
-  let prev = kfs[0];
-  let next = kfs[kfs.length - 1];
+  // Find segment [prev, next] surrounding `clamped`.
+  // Indices below are always in bounds: we've already returned above for
+  // length 0/1, so kfs[0] and kfs[kfs.length - 1] exist here, and the loop
+  // condition `i < kfs.length - 1` guarantees kfs[i + 1] exists too.
+  let prev = kfs[0]!;
+  let next = kfs[kfs.length - 1]!;
   for (let i = 0; i < kfs.length - 1; i++) {
-    if (clamped >= kfs[i].time && clamped <= kfs[i + 1].time) {
-      prev = kfs[i];
-      next = kfs[i + 1];
+    if (clamped >= kfs[i]!.time && clamped <= kfs[i + 1]!.time) {
+      prev = kfs[i]!;
+      next = kfs[i + 1]!;
       break;
     }
   }

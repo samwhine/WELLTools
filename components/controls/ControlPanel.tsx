@@ -36,7 +36,12 @@ export function ControlPanel({
             {controls
               .filter((c) => c.group === group)
               .map((control) => (
-                <Control key={control.key} control={control} value={settings[control.key]} onChange={onChange} />
+                <Control
+                  key={control.key}
+                  control={control}
+                  value={settings[control.key] ?? control.default}
+                  onChange={onChange}
+                />
               ))}
           </div>
         ))}
@@ -55,7 +60,12 @@ export function ControlPanel({
               {controls
                 .filter((c) => c.group === "Advanced")
                 .map((control) => (
-                  <Control key={control.key} control={control} value={settings[control.key]} onChange={onChange} />
+                  <Control
+                    key={control.key}
+                    control={control}
+                    value={settings[control.key] ?? control.default}
+                    onChange={onChange}
+                  />
                 ))}
             </div>
           )}

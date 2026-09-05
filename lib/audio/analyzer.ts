@@ -27,14 +27,18 @@ export function analyzeRmsWindows(buffer: AudioBuffer, windowMs = 20): RmsWindow
   const mono = new Float32Array(length);
   for (let c = 0; c < channelCount; c++) {
     const data = buffer.getChannelData(c);
-    for (let i = 0; i < length; i++) mono[i] += data[i] / channelCount;
+    // Indices are always in bounds here (i < length, and both arrays are
+    // fixed-length Float32Arrays of size `length`), so the non-null
+    // assertion just works around TS's noUncheckedIndexedAccess being
+    // overly conservative for dense typed arrays.
+    for (let i = 0; i < length; i++) mono[i]! += data[i]! / channelCount;
   }
 
   const windows: RmsWindow[] = [];
   for (let i = 0; i < length; i += windowSize) {
     const end = Math.min(length, i + windowSize);
     let sumSquares = 0;
-    for (let j = i; j < end; j++) sumSquares += mono[j] * mono[j];
+    for (let j = i; j < end; j++) sumSquares += mono[j]! * mono[j]!;
     const rms = Math.sqrt(sumSquares / (end - i));
     windows.push({ start: i / sampleRate, end: end / sampleRate, db: rmsToDb(rms) });
   }

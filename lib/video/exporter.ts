@@ -66,7 +66,8 @@ export function exportTrimmedVideo(
       const partNames: string[] = [];
       for (let i = 0; i < keep.length; i++) {
         if (cancelled) return;
-        const seg = keep[i];
+        // Safe: loop condition `i < keep.length` guarantees this index exists.
+        const seg = keep[i]!;
         const partName = `part${i}.mp4`;
         await ffmpeg.exec([
           "-i",

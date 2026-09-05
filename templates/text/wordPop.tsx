@@ -96,11 +96,13 @@ export const wordPopTemplate: MotionTemplate = {
     const totalWidth = widths.reduce((a, b) => a + b, 0) + gap * (words.length - 1);
     let x = size.width / 2 - totalWidth / 2;
     const y = size.height / 2;
+    // clips and widths are both built via words.map(), so they're always
+    // the same length as words — these indices are guaranteed to exist.
     words.forEach((w, i) => {
-      const frame = sampleClip(clips[i], t);
+      const frame = sampleClip(clips[i]!, t);
       const scale = Number(frame.scale ?? 1);
       const opacity = Number(frame.opacity ?? 1);
-      const wCenter = x + widths[i] / 2;
+      const wCenter = x + widths[i]! / 2;
       ctx.save();
       ctx.globalAlpha = opacity;
       ctx.translate(wCenter, y);
@@ -108,7 +110,7 @@ export const wordPopTemplate: MotionTemplate = {
       ctx.textAlign = "center";
       ctx.fillText(w, 0, 0);
       ctx.restore();
-      x += widths[i] + gap;
+      x += widths[i]! + gap;
     });
     ctx.restore();
   },
