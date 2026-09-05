@@ -31,7 +31,7 @@ export function GlassSlider({ label, value, min = 0, max = 100, step = 1, unit =
         min={min}
         max={max}
         step={step}
-        onValueChange={([v]) => onChange(v)}
+        onValueChange={([v]) => onChange(v ?? value)}
       >
         <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-white/[0.08]">
           <SliderPrimitive.Range className="absolute h-full bg-accent" />
