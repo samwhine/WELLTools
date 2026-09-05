@@ -53,6 +53,16 @@ Exactly the workflow in §75 — e.g. to add "Text Slam":
 
 Nothing in the router, preview engine, export system, search, filters, or control panel needs to change.
 
+## SEO / metadata / social previews (this pass)
+
+- Full metadata in `app/layout.tsx`: title template, description, keywords, `authors`/`creator` (**Samuel Extehines Heydemans**), `publisher` (**WELL**), canonical URL, robots.
+- A real Open Graph + Twitter card image, generated dynamically at `app/opengraph-image.tsx` (Next's `next/og` — no external design tool needed) using the actual WELL wordmark and the product's own dark/blue palette, so link previews on Twitter/X, WhatsApp, Discord, iMessage, etc. look intentional instead of blank. `app/twitter-image.tsx` re-exports the same generator so there's one source of truth.
+- Schema.org JSON-LD (`WebApplication` + `Person`) in the layout body, so Google has a structured signal that this is a free web app called WELLTools, brand "WELL", created by Samuel Extehines Heydemans — this is what helps search results show more than just a bare blue link.
+
+**One thing you must change before this is fully correct:** `SITE_URL` at the top of `app/layout.tsx` is a placeholder (`https://welltools.vercel.app`). Every absolute URL — canonical link, OG/Twitter image URLs, JSON-LD — is built from it. Update it to your real domain once you know it (Vercel's assigned `*.vercel.app` URL, or your custom domain), otherwise search engines and link previews will reference the wrong address.
+
+Also worth doing once it's live: submit the site to [Google Search Console](https://search.google.com/search-console) and verify it there — structured data and good meta tags help, but Search Console is what actually gets a new site crawled and indexed promptly rather than waiting for Google to discover it organically.
+
 ## Mobile fixes (this pass)
 
 Found and fixed after being asked directly about mobile — being explicit about what was actually broken:

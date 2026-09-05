@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { LiquidGlass } from "./LiquidGlass";
 import { cn } from "@/lib/utils/cn";
@@ -38,8 +39,11 @@ export function GlassNavbar() {
   return (
     <header className="sticky top-0 z-40 flex flex-col items-center px-4 pt-4">
       <LiquidGlass level="regular" className="flex w-full max-w-5xl items-center justify-between px-4 py-2.5">
-        <Link href="/" className="text-[15px] font-semibold tracking-tight text-ink">
-          WELLTools
+        <Link href="/" aria-label="WELLTools — home" className="flex items-center gap-1.5">
+          <Image src="/brand/logo-well.png" alt="" width={512} height={156} className="h-5 w-auto" priority />
+          <span aria-hidden className="text-[15px] font-semibold tracking-tight text-ink">
+            Tools
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 sm:flex">
